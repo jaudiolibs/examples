@@ -38,19 +38,34 @@
       </exclusions>
     </dependency>
     <dependency>
+      <groupId>net.java.dev.jna</groupId>
+      <artifactId>jna</artifactId>
+      <version>4.0.0</version>
+    </dependency>
+    <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>jnajack</artifactId>
+      <artifactId>audioops-impl</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>audioops-api</artifactId>
       <version>${project.version}</version>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>audioservers-api</artifactId>
-      <version>${project.version}</version>
+      <version>1.1-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>audioservers-javasound</artifactId>
+      <version>1.1-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>audioservers-jack</artifactId>
-      <version>${project.version}</version>
+      <version>1.1-SNAPSHOT</version>
     </dependency>
   </dependencies>
 </project>

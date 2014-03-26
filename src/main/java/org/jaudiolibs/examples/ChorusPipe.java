@@ -22,7 +22,7 @@ public class ChorusPipe {
 
     public static void main(String[] args) throws Exception {
 
-        String lib = "JACK"; // or "JACK";
+        String lib = "JACK"; // or "JavaSound";
 
         AudioServerProvider provider = null;
         for (AudioServerProvider p : ServiceLoader.load(AudioServerProvider.class)) {
@@ -42,7 +42,7 @@ public class ChorusPipe {
                 256, //buffer size
                 // extensions
                 new ClientID("Chorus Pipe"),
-                Connections.ALL);
+                Connections.OUTPUT);
 
         
         BusClient bus = new BusClient(2, 2);

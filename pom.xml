@@ -24,32 +24,12 @@
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>pipes</artifactId>
+      <artifactId>audioops-api</artifactId>
       <version>${project.version}</version>
-      <exclusions>
-        <exclusion>
-          <artifactId>audioservers-api</artifactId>
-          <groupId>org.jaudiolibs</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>audioops-api</artifactId>
-          <groupId>org.jaudiolibs</groupId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>net.java.dev.jna</groupId>
-      <artifactId>jna</artifactId>
-      <version>4.0.0</version>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>audioops-impl</artifactId>
-      <version>${project.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>${project.groupId}</groupId>
-      <artifactId>audioops-api</artifactId>
       <version>${project.version}</version>
     </dependency>
     <dependency>
@@ -59,13 +39,23 @@
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
+      <artifactId>audioservers-jack</artifactId>
+      <version>1.1-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
       <artifactId>audioservers-javasound</artifactId>
       <version>1.1-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>audioservers-jack</artifactId>
-      <version>1.1-SNAPSHOT</version>
+      <artifactId>pipes</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>net.java.dev.jna</groupId>
+      <artifactId>jna</artifactId>
+      <version>4.1.0</version>
     </dependency>
   </dependencies>
 </project>

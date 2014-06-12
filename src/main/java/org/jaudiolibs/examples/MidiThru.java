@@ -43,10 +43,10 @@ public class MidiThru implements JackProcessCallback, JackShutdownCallback {
     private final JackClient client;
     private final JackPort inputPort;
     private final JackPort outputPort;
-  
-    private JackMidi.Event midiEvent;
-    private byte[] data;
+    private final JackMidi.Event midiEvent;
     
+    private byte[] data;
+
     private BlockingQueue<String> debugQueue;
     private StringBuilder sb;
 
@@ -68,17 +68,27 @@ public class MidiThru implements JackProcessCallback, JackShutdownCallback {
     }
 
     private MidiThru() throws JackException {
-        Jack jack = Jack.getInstance();
         EnumSet<JackStatus> status = EnumSet.noneOf(JackStatus.class);
-        client = jack.openClient("Java MIDI thru test", EnumSet.noneOf(JackOptions.class), status);
-        inputPort = client.registerPort("MIDI in", JackPortType.MIDI, JackPortFlags.JackPortIsInput);
-        outputPort = client.registerPort("MIDI out", JackPortType.MIDI, JackPortFlags.JackPortIsOutput);
-        midiEvent = new JackMidi.Event();
-        if (DEBUG) {
-            debugQueue = new LinkedBlockingQueue<String>();
-            sb = new StringBuilder();
+        try {
+            Jack jack = Jack.getInstance();
+            client = jack.openClient("Java MIDI thru test", EnumSet.of(JackOptions.JackNoStartServer), status);
+            if (!status.isEmpty()) {
+                System.out.println("JACK client status : " + status);
+            }
+            inputPort = client.registerPort("MIDI in", JackPortType.MIDI, JackPortFlags.JackPortIsInput);
+            outputPort = client.registerPort("MIDI out", JackPortType.MIDI, JackPortFlags.JackPortIsOutput);
+            midiEvent = new JackMidi.Event();
+            if (DEBUG) {
+                debugQueue = new LinkedBlockingQueue<String>();
+                sb = new StringBuilder();
+            }
+        } catch (JackException ex) {
+            if (!status.isEmpty()) {
+                System.out.println("JACK exception client status : " + status);
+            }
+            throw ex;
         }
-        
+
     }
 
     private void activate() throws JackException {
@@ -90,9 +100,6 @@ public class MidiThru implements JackProcessCallback, JackShutdownCallback {
     @Override
     public boolean process(JackClient client, int nframes) {
         try {
-            if (midiEvent == null) {
-                midiEvent = new JackMidi.Event();
-            }
             JackMidi.clearBuffer(outputPort);
             int eventCount = JackMidi.getEventCount(inputPort);
             for (int i = 0; i < eventCount; ++i) {
@@ -107,7 +114,7 @@ public class MidiThru implements JackProcessCallback, JackShutdownCallback {
                     sb.setLength(0);
                     sb.append(midiEvent.time());
                     sb.append(": ");
-                    for (int j=0; j<size; j++) {
+                    for (int j = 0; j < size; j++) {
                         sb.append((j == 0) ? "" : ", ");
                         sb.append(data[j] & 0xFF);
                     }

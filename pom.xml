@@ -4,7 +4,7 @@
 
   <groupId>org.jaudiolibs</groupId>
   <artifactId>examples</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.1.0</version>
   <packaging>jar</packaging>
 
   <name>examples</name>
@@ -27,32 +27,32 @@
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>audioops-api</artifactId>
-      <version>${project.version}</version>
+      <version>1.0-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>audioops-impl</artifactId>
-      <version>${project.version}</version>
+      <version>1.0-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>audioservers-api</artifactId>
-      <version>1.1-SNAPSHOT</version>
+      <version>1.1.0</version>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>audioservers-jack</artifactId>
-      <version>1.1-SNAPSHOT</version>
+      <version>1.1.0</version>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>audioservers-javasound</artifactId>
-      <version>1.1-SNAPSHOT</version>
+      <version>1.1.0</version>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>pipes</artifactId>
-      <version>${project.version}</version>
+      <version>1.0-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>net.java.dev.jna</groupId>

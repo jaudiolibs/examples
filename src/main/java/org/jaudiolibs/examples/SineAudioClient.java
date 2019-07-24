@@ -101,6 +101,7 @@ public class SineAudioClient implements AudioClient {
     
     private final static float FREQ = 440.0f;
     private float[] data;
+    private float[] buffer;
     private int idx;
 
     public void configure(AudioConfiguration context) throws Exception {
@@ -126,16 +127,22 @@ public class SineAudioClient implements AudioClient {
         FloatBuffer left = outputs.get(0);
         FloatBuffer right = outputs.get(1);
         
+        if (buffer == null || buffer.length != nframes) {
+            buffer = new float[nframes];
+        }
+        
         // always use nframes as the number of samples to process
         for (int i = 0; i < nframes; i++) {
-            left.put(data[idx]);
-            right.put(data[idx]);
+            buffer[i] = (data[idx]);
             idx++;
             if (idx == data.length) {
                 idx = 0;
             }
-
         }
+
+        left.put(buffer);
+        right.put(buffer);
+        
         return true;
     }
 

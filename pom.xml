@@ -4,11 +4,11 @@
 
   <groupId>org.jaudiolibs</groupId>
   <artifactId>examples</artifactId>
-  <version>1.2.0-SNAPSHOT</version>
+  <version>2.0.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>examples</name>
-  <url>http://maven.apache.org</url>
+  <name>JAudioLibs Examples</name>
+  <url>https://www.jaudiolibs.org</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -36,22 +36,37 @@
     <dependency>
       <groupId>org.jaudiolibs</groupId>
       <artifactId>audioservers-api</artifactId>
-      <version>1.2.0</version>
+      <version>2.0.0</version>
     </dependency>
     <dependency>
       <groupId>org.jaudiolibs</groupId>
       <artifactId>audioservers-jack</artifactId>
-      <version>1.2.0</version>
+      <version>2.0.0</version>
     </dependency>
     <dependency>
       <groupId>org.jaudiolibs</groupId>
       <artifactId>audioservers-javasound</artifactId>
-      <version>1.2.0</version>
+      <version>2.0.0</version>
     </dependency>
     <dependency>
       <groupId>org.jaudiolibs</groupId>
-      <artifactId>pipes</artifactId>
-      <version>1.1.0</version>
+      <artifactId>pipes-core</artifactId>
+      <version>2.0.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.jaudiolibs</groupId>
+      <artifactId>pipes-units</artifactId>
+      <version>2.0.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.jaudiolibs</groupId>
+      <artifactId>pipes-units-javasound</artifactId>
+      <version>2.0.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.jaudiolibs</groupId>
+      <artifactId>pipes-graph</artifactId>
+      <version>2.0.0</version>
     </dependency>
     <dependency>
       <groupId>org.jaudiolibs</groupId>

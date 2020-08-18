@@ -14,27 +14,18 @@ import org.jaudiolibs.audioservers.ext.Connections;
 
 /**
  * Basic example for processing audio using the AudioServer API.
- * 
+ *
  * A simple AudioClient that outputs a sine wave.
- * 
- * Run main() - if not using NetBeans, make sure to configure JVM arguments.
- * -Xincgc is recommended.
- * -Djna.nosys=true may be required if using the JACK AudioServer and 
- * an older version of JNA is installed on your system.
- * 
+ *
  * @author Neil C Smith
  */
 public class SineAudioClient implements AudioClient {
 
-    
     public static void main(String[] args) throws Exception {
-        
+
         /* Search for an AudioServerProvider that matches the required library name
          * using the ServiceLoader mechanism. This removes the need for a direct
          * dependency on any particular server implementation.
-         * 
-         * It is also possible to create particular AudioServerProvider's 
-         * directly. 
          */
         String lib = "JavaSound"; // or "JACK";
 
@@ -48,12 +39,12 @@ public class SineAudioClient implements AudioClient {
         if (provider == null) {
             throw new NullPointerException("No AudioServer found that matches : " + lib);
         }
-        
+
         /* Create an instance of our client - see methods in the implementation 
          * below for more information.
          */
         AudioClient client = new SineAudioClient();
-        
+
         /* Create an audio configuration.
          * 
          * The configuration is a hint to the AudioServer. Some servers (eg. JACK)
@@ -72,14 +63,13 @@ public class SineAudioClient implements AudioClient {
                 // extensions
                 new ClientID("Sine"),
                 Connections.OUTPUT);
-        
-        
+
         /* Use the AudioServerProvider to create an AudioServer for the client. 
          */
         final AudioServer server = provider.createServer(config, client);
-        
+
         /* Create a Thread to run our server. All servers require a Thread to run in.
-         */   
+         */
         Thread runner = new Thread(new Runnable() {
             public void run() {
                 // The server's run method can throw an Exception so we need to wrap it
@@ -98,7 +88,6 @@ public class SineAudioClient implements AudioClient {
     }
 
     // AudioClient implementation
-    
     private final static float FREQ = 440.0f;
     private float[] data;
     private float[] buffer;
@@ -114,7 +103,7 @@ public class SineAudioClient implements AudioClient {
         if (context.getOutputChannelCount() != 2) {
             throw new IllegalArgumentException("SineAudioClient can only work with stereo output");
         }
-        
+
         int size = (int) (context.getSampleRate() / FREQ);
         data = new float[size];
         for (int i = 0; i < size; i++) {
@@ -126,11 +115,11 @@ public class SineAudioClient implements AudioClient {
         // get left and right channels from array list
         FloatBuffer left = outputs.get(0);
         FloatBuffer right = outputs.get(1);
-        
+
         if (buffer == null || buffer.length != nframes) {
             buffer = new float[nframes];
         }
-        
+
         // always use nframes as the number of samples to process
         for (int i = 0; i < nframes; i++) {
             buffer[i] = (data[idx]);
@@ -142,7 +131,7 @@ public class SineAudioClient implements AudioClient {
 
         left.put(buffer);
         right.put(buffer);
-        
+
         return true;
     }
 

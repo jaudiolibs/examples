@@ -17,10 +17,6 @@ import org.jaudiolibs.audioservers.ext.Connections;
  *
  * A simple AudioClient that just copies input to output.
  *
- * Run main() - if not using NetBeans, make sure to configure JVM arguments.
- * -Xincgc is recommended. -Djna.nosys=true may be required if using the JACK
- * AudioServer and an older version of JNA is installed on your system.
- *
  * @author Neil C Smith
  */
 public class PassThroughAudioClient implements AudioClient {
@@ -30,9 +26,6 @@ public class PassThroughAudioClient implements AudioClient {
         /* Search for an AudioServerProvider that matches the required library name
          * using the ServiceLoader mechanism. This removes the need for a direct
          * dependency on any particular server implementation.
-         * 
-         * It is also possible to create particular AudioServerProvider's 
-         * directly. 
          */
         String lib = "JavaSound"; // or "JACK";
 
@@ -94,9 +87,8 @@ public class PassThroughAudioClient implements AudioClient {
         runner.start();
 
     }
-    
-    // AudioClient implementation
 
+    // AudioClient implementation
     public void configure(AudioConfiguration context) throws Exception {
         /* Check the configuration of the passed in context, and set up any
          * necessary resources. Throw an Exception if the sample rate, buffer
@@ -118,5 +110,3 @@ public class PassThroughAudioClient implements AudioClient {
         //dispose resources.
     }
 }
-
-
